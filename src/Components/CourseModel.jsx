@@ -154,7 +154,7 @@ const courseModel = {
         ],
       },
       
-    ],
+    ], 
   };
   
   export default courseModel;
