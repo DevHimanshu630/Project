@@ -1,42 +1,34 @@
 import React, { useState } from "react";
 import courseModel from "./CourseModel";
 import CourseDetail from "./CourseDetail";
+import '../CSS/CourseCard.css'
 
 const CourseListing = () => {
 
-
-  // const courses = courseModel.courses;
-  const [courses] = useState(courseModel.courses); // Assuming courseModel has a 'courses' array
+  const [courses] = useState(courseModel.courses); 
   const [searchTerm, setSearchTerm] = useState("");
-  const [isListed , setisListed] =useState(true);
-  const [details , setDetails] = useState({})
+  const [isListed, setisListed] = useState(true);
+  const [details, setDetails] = useState({});
   const [selectedCourse, setSelectedCourse] = useState(null);
 
   const filteredCourses = courses.filter((course) =>
     course.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  
-  
-  // const ViewDetails=(data)=>{
-  //   setisListed(false)
-  //   // setDetails(course)
-  //   // console.log(course);
-  // }
 
   const ViewDetails = (course) => {
-    setisListed(false)
+    setisListed(false);
     setSelectedCourse(course);
   };
 
-  const Goback =()=>{
-    setisListed(true)
-  }
+  const Goback = () => {
+    setisListed(true);
+  };
 
   return (
     <div className="center">
-      { isListed ?
+      {isListed ? (
         <div>
-          <div style={{ textAlign: "center" }}>
+          <div className="container">
             <h1>Course Listing</h1>
             <br />
             <input
@@ -47,39 +39,34 @@ const CourseListing = () => {
             />
           </div>
 
-          {filteredCourses.map((course) => (
-              <div className="course-card">
-              <img src={course.thumbnail} alt={course.name} />
-              <h2>{course.name}</h2>
-              <p>Instructor: {course.instructor}</p>
-              <button onClick={() => ViewDetails(course)}>
-                View Details
-              </button>
-              </div>
-            ))}
-      </div>:
-      
-
-      <div>
-
-      {selectedCourse && (
-        <>
-        
-        <CourseDetail course={selectedCourse} />
-        <button onClick={Goback}>Go Back</button>
-
-        </>
+          <div className="main-card">
+              {filteredCourses.map((course) => (
+                
+                    <div className="course-card">
+                    <img src={course.thumbnail} alt={course.name} />
+                    <h2>{course.name}</h2>
+                    <p>Instructor: {course.instructor}</p>
+                    <button onClick={() => ViewDetails(course)}>View Details</button>
+                    </div>
+                
+                ))}
+            </div>
+        </div>
+      ) : (
+        <div>
+          {selectedCourse && (
+            <>
+              <CourseDetail course={selectedCourse} />
+              <button onClick={Goback} style={{width:"150px" ,height:"40px"}} >Go Back</button>
+            </>
+          )}
+        </div>
       )}
-         
-      </div>
-}
-      
 
-        {/* {isListed && (
+      {/* {isListed && (
            <CourseDetail  key={course.id} course={course} />
          
         )} */}
-
     </div>
   );
 };
