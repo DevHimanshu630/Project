@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import CourseListing from './CourseListing';
+  
 function CourseDetail({course}) {
-
+   
   return (
     <div className='course-detail'>
         <h1>Course Detail</h1>
@@ -20,9 +21,11 @@ function CourseDetail({course}) {
                 <h2>Syllabus</h2>
                 {course.syllabus.map((item) => (
                     <details key={item.week}>
-                        <summary>{item.topic}</summary>
-                        <p>{item.content}</p>
-                    </details>
+                    <summary>
+                      <h4>Week {item.week}: {item.topic}</h4>
+                    </summary>
+                    <p>{item.content}</p>
+                  </details>
                 ))}
             </div>
            
