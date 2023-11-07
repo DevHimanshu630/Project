@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import '../CSS/Student.css'
 // import courseModel from './CourseModel';
+
+// i can take data from coursemodel but there is lot of courses 
+//  also i am totally confused regarding student dashbaord , because there is no detail as per the requirment for the dashboard
+
 const courseModel = {
   courses: [
     {
